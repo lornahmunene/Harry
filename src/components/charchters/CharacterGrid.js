@@ -1,24 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import CharacterItems from './CharacterItems';
+import React from 'react'
+import CharacterItems from './CharacterItems'
+import Spinner from '../UI/Spinner'
 
+const CharacterGrid = ({items, isLoading}) => {
+    return (
+        isLoading ? (<Spinner/>) : 
+            <section className='cards'>
+                {items.map((item,index) => (
+                    <CharacterItems key={index} item={item}></CharacterItems>
+                ))}
+            </section>
+        
+    )
+}
 
-const CharacterGrid = ({ items }) => {
-  return (
-    <div className='container'>
-      <section className='cards'>
-        {items.map((item) => (
-          <div key={item.id}>
-            
-            
-            <Link to={`/details/${item.id}`}>
-              <CharacterItems item={item} />
-            </Link>
-          </div>
-        ))}
-      </section>
-    </div>
-  );
-};
-
-export default CharacterGrid;
+export default CharacterGrid
